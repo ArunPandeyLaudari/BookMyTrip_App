@@ -1,4 +1,6 @@
 import 'package:bookmy_trip/homepage.dart';
+import 'package:bookmy_trip/listview_builder.dart';
+import 'package:bookmy_trip/navigate/first_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      home: FirstScreen(),
     );
   }
 }

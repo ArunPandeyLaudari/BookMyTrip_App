@@ -43,55 +43,59 @@ class Homepage extends StatelessWidget {
     required double price,
     required int rating,
   }) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Hotel Image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              imageUrl,
-              height: 100,
-              width: 100,
-              fit: BoxFit.cover,
+    return Card(
+      shadowColor: Colors.amberAccent,
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Hotel Image
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                imageUrl,
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-
-          // Hotel Info
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text(location, style: const TextStyle(color: Colors.grey)),
-                const SizedBox(height: 25),
-                Row(
-                  children: [
-                    Text("\$$price", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(width: 8),
-                    const Text("per night", style: TextStyle(color: Colors.grey)),
-                  ],
-                ),
-              ],
+            const SizedBox(width: 10),
+      
+            // Hotel Info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text(location, style: const TextStyle(color: Color.fromARGB(255, 77, 68, 68))),
+                  const SizedBox(height: 25),
+                  Row(
+                    children: [
+                      Text("\$$price", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      const SizedBox(width: 8),
+                      const Text("per night", style: TextStyle(color: Color.fromARGB(255, 73, 66, 66))),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          // Favorite and Rating
-          SizedBox(
-            height: 90,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Icon(Icons.favorite,   color: Color.fromRGBO(220, 7, 14, 1),),
-                buildStars(rating),
-              ],
+      
+            // Favorite and Rating
+            SizedBox(
+              height: 90,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(Icons.favorite,   color: Color.fromRGBO(220, 7, 14, 1),),
+                  buildStars(rating),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -415,28 +419,21 @@ class Homepage extends StatelessWidget {
                   children: [
                     hotelCard(
                       imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-o/29/83/84/e2/hotel-siraichuli.jpg',
-                      name: 'JC Hotel',
-                      location: 'New Location',
-                      price: 23.0,
-                      rating: 4,
-                    ),
-                    hotelCard(
-                      imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-o/29/83/84/e2/hotel-siraichuli.jpg',
                       name: 'Peace Inn',
                       location: 'Downtown',
                       price: 45.0,
-                      rating: 5,
+                      rating: 2,
                     ),
 
                     hotelCard(
-                      imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-o/29/83/84/e2/hotel-siraichuli.jpg',
+                      imageUrl: 'https://media.gettyimages.com/id/184609057/photo/luxury-hotel-room.jpg?s=612x612&w=0&k=20&c=NN1OTddvUxGx-CNSHYe2SQvsV7diMg8AByIlnHM39Xw=',
                       name: 'Hotel Everest',
                       location: 'Kathmandu, Nepal',
                       price: 50.0,
                       rating: 4,
                     ),
                     hotelCard(
-                      imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-o/29/83/84/e2/hotel-siraichuli.jpg',
+                      imageUrl: 'https://t3.ftcdn.net/jpg/00/83/06/20/360_F_83062064_gN5sYVuZs7jHCACvnKK2wmswceI32YHY.jpg',
                       name: 'Mountain View Resort',
                       location: 'Pokhara, Nepal',
                       price: 60.0,
@@ -449,13 +446,66 @@ class Homepage extends StatelessWidget {
                       price: 40.0,
                       rating: 3,
                     ),
-
-
                   ],
+
+                  
                 ),
+
+                Card(
+                  elevation: 1,
+                  shadowColor: Colors.orange,
+                  child: ListTile(
+                                contentPadding: EdgeInsets.all(0),
+                    leading: Image.network('https://t3.ftcdn.net/jpg/00/83/06/20/360_F_83062064_gN5sYVuZs7jHCACvnKK2wmswceI32YHY.jpg',
+                    
+                    
+                    ),
+                    title: Column(
+                      spacing: 5,
+                      crossAxisAlignment:CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Baigaicha Hotel",style: TextStyle(fontSize: 18,fontWeight:FontWeight.bold ),
+                        ),
+                         Text(
+                          "China Town",style: TextStyle(fontSize: 14,fontWeight:FontWeight.normal,color: Colors.grey ),
+                         )
+
+                         
+                      ],
+                      
+                    ),
+                    trailing: SizedBox(
+                      width: 50,
+                      // height: 80,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                         Icon(Icons.favorite,color:Colors.red,size: 18,),
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.star,color: Colors.amber,size: 18,),
+                            Text("4.3K")
+                          ],
+                         )
+                         
+                        ],
+                      ),
+                    )
+                  ),
+                )
               ],
+
+            
+
+            
             ),
+
+          
           ),
+
+        
         ),
       ),
     );
