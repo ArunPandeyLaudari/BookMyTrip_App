@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class SecondScreen extends StatelessWidget {
 
 
-  final String name;
-  const SecondScreen({required this.name,super.key});
+  final List<String> fruitname;
+  const SecondScreen({required this.fruitname,super.key});
 
 
  
@@ -22,10 +22,16 @@ class SecondScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () {
-                Navigator.of(context).pop();
+              Navigator.of(context).pop();
               },
               child: Text("Go | To | Next Page")),
-              Text(name)
+              SizedBox(
+              height: 200,
+              child: ListView.builder(itemBuilder: (context, index) => 
+              Text(fruitname[index]),
+              itemCount: fruitname.length,
+              ),
+            )
           ],
         ),
       ),

@@ -1,8 +1,12 @@
 // import 'package:bookmy_trip/navigate/second_screen.dart';
+import 'package:bookmy_trip/navigate/second_screen.dart';
 import 'package:flutter/material.dart';
 
 class FirstScreen extends StatefulWidget {
-  const FirstScreen({super.key});
+
+   const FirstScreen({super.key});
+
+  
 
   @override
   State<FirstScreen> createState() => _FirstScreenState();
@@ -10,7 +14,8 @@ class FirstScreen extends StatefulWidget {
 
 class _FirstScreenState extends State<FirstScreen> {
  
-//  final GlobalKey<FormState> _fruitnameFromKey = GlobalKey();
+ final List<String> fruitname=[];
+ final GlobalKey<FormState> _addFruitFromKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +30,15 @@ class _FirstScreenState extends State<FirstScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Form(child: 
+            Form(
+              key: _addFruitFromKey,
+            child: 
             Column(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextFormField(
+                 
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),labelText: "Fruits"
                   ),
@@ -45,14 +53,45 @@ class _FirstScreenState extends State<FirstScreen> {
                       return null;
                     }
                   },
+
+                  onSaved: (newValue) {
+                    if (newValue !=null){
+                      setState(() {
+                        fruitname.add(newValue);
+                      });
+                    }
+                  },
                 ),
 
-                FilledButton(onPressed: (){}, child:Text('Add Fruits'))
-                
-              ],
-              
+                FilledButton(onPressed: (){
+                  if(!_addFruitFromKey.currentState!.validate()){
+                    return;
+                  }
+
+                  _addFruitFromKey.currentState!.save();
+                }, child:Text('Add Fruits')), 
+
+                FilledButton(onPressed: (){
+                  setState(() {
+                    fruitname.clear();
+                  });
+
+                }, child: Text("Clear")),
+
+                 FilledButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondScreen(fruitname: fruitname),));
+
+                }, child: Text("Send"))
+              ], 
             )
-            
+            ),
+
+            SizedBox(
+              height: 200,
+              child: ListView.builder(itemBuilder: (context, index) => 
+              Text(fruitname[index]),
+              itemCount: fruitname.length,
+              ),
             )
           ],
         ),
